@@ -1,0 +1,12 @@
+# Dossier de l'ancienne config (ne pas versionner)
+ancienne config/
+
+# Dossier d'analyse
+repo_analysis/
+
+# Lazy.nvim lock (optionnel - décommenter pour versionner les versions exactes)
+# lazy-lock.json
+
+# Fichiers système
+.DS_Store
+Thumbs.db

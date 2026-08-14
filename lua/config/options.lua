@@ -37,3 +37,7 @@ vim.opt.updatetime = 250         -- Temps de réponse plus rapide (par défaut 4
 vim.opt.timeoutlen = 300         -- Délai pour les raccourcis composés (ex: which-key)
 vim.opt.undofile = true          -- Persistance de l'historique d'annulation (Undo) même après fermeture
 
+-- Désactiver les notifications de déprécation internes Neovim
+vim.deprecate = function() end
+
+

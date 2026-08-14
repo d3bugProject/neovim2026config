@@ -4,7 +4,7 @@ vim.env.CC = "gcc"
 
 return {
   "nvim-treesitter/nvim-treesitter",
-  version = "v0.9.3", -- Version stable avec l'API configs (TSInstall, TSBufInfo etc.)
+  branch = "master",
   build = ":TSUpdate",
   lazy = false,
   priority = 1000,

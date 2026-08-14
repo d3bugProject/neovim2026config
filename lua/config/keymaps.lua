@@ -73,3 +73,6 @@ end, { desc = "Afficher le diagnostic sous le curseur" })
 -- Raccourci Shift + Q (Q) pour sauvegarder tout et quitter (:wqa)
 map("n", "Q", "<cmd>wqa<CR>", { desc = "Sauvegarder tout et quitter Neovim" })
 
+-- Fermeture de buffers
+map("n", "x", "<cmd>bd<CR>",  { desc = "Fermer le buffer actuel" })
+map("n", "X", "<cmd>%bd<CR>", { desc = "Fermer tous les buffers" })

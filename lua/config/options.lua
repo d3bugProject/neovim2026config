@@ -40,4 +40,16 @@ vim.opt.undofile = true          -- Persistance de l'historique d'annulation (Un
 -- Désactiver les notifications de déprécation internes Neovim
 vim.deprecate = function() end
 
+-- Protection contre les erreurs Treesitter (noeuds nil lors du parsing dynamique)
+local orig_get_range = vim.treesitter.get_range
+if orig_get_range then
+  vim.treesitter.get_range = function(node, source, metadata)
+    if not node then
+      return { 0, 0, 0, 0 }
+    end
+    return orig_get_range(node, source, metadata)
+  end
+end
+
+
 

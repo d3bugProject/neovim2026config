@@ -1,7 +1,11 @@
 {
+  "LuaSnip": { "branch": "master", "commit": "642b0c595e11608b4c18219e93b88d7637af27bc" },
+  "blink-cmp-copilot": { "branch": "main", "commit": "439cff78780c033aa23cf061d7315314b347e3c1" },
   "blink.cmp": { "branch": "main", "commit": "b6f11a0aa33e601c469a126e3ed6e35208fe3ea3" },
   "conform.nvim": { "branch": "master", "commit": "016802de402556da54c36bd7359b441266b01cdd" },
+  "copilot.lua": { "branch": "master", "commit": "7e6723aabea044519462958ffcea68d7985c5ed0" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },
+  "hop.nvim": { "branch": "master", "commit": "08ddca799089ab96a6d1763db0b8adc5320bf050" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "mason-conform.nvim": { "branch": "main", "commit": "48da2ebd5efbaf8a99566eadc3ece82d523f03c5" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "67029ccdac1ef8941e13b826417bc0ffac24cc86" },
@@ -18,5 +22,6 @@
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "012f1480cd9a5fc99fce7678e0a536421a53fc46" },
   "snacks.nvim": { "branch": "main", "commit": "882c996cf28183f4d63640de0b4c02ec886d01f2" },
-  "solarized-osaka.nvim": { "branch": "main", "commit": "0df74ef0ed6ce9b5aa2d194f1bd6f25a64e11bcc" }
+  "solarized-osaka.nvim": { "branch": "main", "commit": "0df74ef0ed6ce9b5aa2d194f1bd6f25a64e11bcc" },
+  "vscode-es7-javascript-react-snippets": { "branch": "develop", "commit": "07f8c60079172f56b81df328e6a1f651063304ec" }
 }

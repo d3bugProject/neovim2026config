@@ -15,6 +15,10 @@ map("n", "<C-l>", "<C-w>l", { desc = "Fenêtre droite" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Sauvegarder le fichier" })
 map("n", "e", "<cmd>wa<CR>", { desc = "Sauvegarder tous les buffers (:wa)" })
 
+-- Tout sélectionner avec Ctrl + a
+map({ "n", "i", "v" }, "<C-a>", "<cmd>normal! ggVG<CR>", { desc = "Tout sélectionner" })
+
+
 -- Afficher l'historique des messages et erreurs Neovim dans une fenêtre flottante élégante avec Espace + n
 map("n", "<leader>n", function()
   local messages = vim.fn.execute("messages")
@@ -52,7 +56,7 @@ map("n", "<leader>n", function()
     col = col,
     style = "minimal",
     border = "rounded",
-    title = " 🔔 Notifications & Erreurs (Quitter: q / Esc) ",
+    title = " 🔔 Notifications & Erreurs (Quitter: q / Esc | Effacer: c) ",
     title_pos = "center",
   })
   
@@ -62,7 +66,12 @@ map("n", "<leader>n", function()
 
   vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = buf, silent = true })
   vim.keymap.set("n", "<Esc>", "<cmd>close<CR>", { buffer = buf, silent = true })
+  vim.keymap.set("n", "c", function()
+    vim.cmd("messages clear")
+    vim.api.nvim_win_close(win, true)
+  end, { buffer = buf, silent = true })
 end, { desc = "Afficher les messages/erreurs dans une fenêtre flottante" })
+
 
 
 -- Afficher l'erreur du curseur (Diagnostic LSP/Treesitter) avec Espace + d

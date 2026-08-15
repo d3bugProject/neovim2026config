@@ -37,10 +37,15 @@ return {
       lsp_fallback = true,
     },
 
-    -- Prettier : utiliser le config local du projet s'il existe (.prettierrc etc.)
+    -- Prettier : désactiver l'insertion automatique de {" "} dans le JSX
     formatters = {
       prettier = {
-        -- Cherche le config prettier du projet, sinon utilise les defaults
+        prepend_args = {
+          "--html-whitespace-sensitivity",
+          "ignore",
+          "--print-width",
+          "120",
+        },
         require_cwd = false,
       },
     },

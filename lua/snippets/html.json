@@ -1,0 +1,24 @@
+{
+  "div": {
+    "prefix": "div",
+    "body": ["<div> $1 </div>"],
+    "description": "simple div"
+  },
+  "div-class": {
+    "prefix": "dc",
+    "body": ["<div className={` $2 `}> $1 </div>$3"],
+    "description": "simple div with classname"
+  },
+  "input": {
+    "prefix": "inp",
+    "body": [
+      "<input name=\"$1\" placeholder='$4'  className={` $3 `} onChange={handlechange} type={`$2`} required$0  />"
+    ],
+    "description": "simple input for react"
+  },
+  "html espace": {
+    "prefix": "espace",
+    "body": ["&nbsp;"],
+    "description": "espace simple en code machun"
+  }
+}

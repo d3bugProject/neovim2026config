@@ -1,0 +1,27 @@
+{
+  "cmb": {
+    "prefix": "cmb",
+    "body": ["/* ", "*", "* $1", "*", "*/", ""],
+    "description": "commentaire block"
+  },
+  "cmtodo": {
+    "prefix": "todo",
+    "body": ["// TODO: $1"],
+    "description": "todo commentaire"
+  },
+  "cmfix": {
+    "prefix": "fix",
+    "body": ["// FIX: $1"],
+    "description": "fix commentaire"
+  },
+  "logic": {
+    "prefix": "logic",
+    "body": ["// LOGIC: $1"],
+    "description": "logic commentaire"
+  },
+  "section": {
+    "prefix": "sec",
+    "body": ["// SECTION: $1"],
+    "description": "logic commentaire"
+  }
+}

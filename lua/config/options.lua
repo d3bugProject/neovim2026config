@@ -4,6 +4,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Désactiver netrw (évite l'explorateur basique par défaut sur `nvim .`)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Interface & Visuel
 vim.opt.number = true          -- Affiche les numéros de ligne
 vim.opt.relativenumber = true  -- Numéros de ligne relatifs pour des déplacements rapides

@@ -78,38 +78,42 @@ Whether you're crafting complex **React / Next.js** applications, building cross
 | Shortcut | Mode | Description |
 |---|---|---|
 | `<Ctrl-a>` | `Normal`, `Insert`, `Visual` | **Select All** lines in buffer |
-| `<C-s>` | `Normal`, `Insert` | Save current file (`:w`) |
+| `<C-s>` | `Normal`, `Insert`, `Visual`, `Select` | Save current file (`:w`) |
 | `e` | `Normal` | Save all open buffers (`:wa`) |
-| `x` | `Normal` | Close current buffer |
-| `X` | `Normal` | Close all buffers |
+| `x` | `Normal` | Close current buffer (`:bd`) |
+| `X` | `Normal` | Close all buffers (`:%bd`) |
 | `Q` | `Normal` | Save all & Quit Neovim (`:wqa`) |
 | `<Esc>` | `Normal` | Clear search highlight (`:nohlsearch`) |
+| `<C-h>` / `<C-j>` / `<C-k>` / `<C-l>` | `Normal` | Move to left / down / up / right split window |
 
 ### 🤖 GitHub Copilot AI & Autocompletion
 | Shortcut | Mode | Description |
 |---|---|---|
-| `<S-Tab>` | `Insert` | **Accept Copilot Ghost-Text** / Previous item |
-| `<Alt+c>` | `Insert` | **Force Copilot AI suggestion** on demand |
-| `<Tab>` | `Insert` | Select next completion item / Jump snippet step |
+| `<S-Tab>` | `Insert` | **Accept Copilot Ghost-Text** (if visible) / Previous completion / Jump snippet step backward |
+| `<Alt+c>` (`<M-c>`) | `Insert` | **Force Copilot AI suggestion** on demand |
+| `<Alt+]>` (`<M-]>`) | `Insert` | Cycle to next Copilot suggestion |
+| `<Alt+[`> (`<M-[>`) | `Insert` | Cycle to previous Copilot suggestion |
+| `<Ctrl-]>` (`<C-]>`) | `Insert` | Dismiss current Copilot suggestion |
+| `<Tab>` | `Insert` | Select next completion item / Jump snippet step forward |
 | `<CR>` (Enter) | `Insert` | Accept completion suggestion / Expand snippet |
-| `<C-Space>` | `Insert` | Trigger autocompletion menu manually |
+| `<C-Space>` | `Insert` | Trigger autocompletion menu manually / Show-hide documentation |
 
 ### 🎯 Hop Teleportation
 | Shortcut | Mode | Description |
 |---|---|---|
-| `m` | `Normal`, `Visual` | Teleport to 1 target character on screen |
-| `mm` | `Normal`, `Visual` | Search & teleport to word pattern |
+| `m` | `Normal`, `Visual`, `Operator` | Teleport to 1 target character on screen |
+| `mm` | `Normal`, `Visual`, `Operator` | Search & teleport to word pattern |
 
 ### 🔍 Search & Explorers
 | Shortcut | Mode | Description |
 |---|---|---|
-| `<Space><Space>` | `Normal` | Search files in project workspace |
-| `<Space>s` | `Normal` | Live grep text search across project |
+| `<Space><Space>` | `Normal` | Search files in project workspace (Snacks picker) |
+| `<Space>s` | `Normal` | Live grep text search across project (Snacks picker) |
 | `<Space>e` | `Normal` | Toggle Floating File Explorer (Neo-tree) |
-| `-` | `Normal` | Edit directory structure in text buffer (Oil.nvim) |
-| `<Space>f` | `Normal` | Format file manually (Prettier / Stylua) |
+| `<Space>o` | `Normal` | Open floating directory editor (Oil.nvim) |
+| `<Space>f` | `Normal` | Format file manually (Prettier / Stylua via Conform) |
 | `<Space>d` | `Normal` | Show LSP diagnostic / error under cursor |
-| `<Space>n` | `Normal` | Open Neovim Notification & Error History window (`c` to clear) |
+| `<Space>n` | `Normal` | Open Neovim Notification & Error History window (`c` to clear, `q`/`<Esc>` to close) |
 
 ---
 
@@ -122,15 +126,16 @@ Whether you're crafting complex **React / Next.js** applications, building cross
 | **Snippet Engine** | [`L3MON4D3/LuaSnip`](https://github.com/L3MON4D3/LuaSnip) | Powerful VSCode & custom snippet expansion engine |
 | **Snippet Packs** | [`friendly-snippets`](https://github.com/rafamadriz/friendly-snippets) & [`vscode-es7-react-snippets`](https://github.com/dsznajder/vscode-es7-javascript-react-snippets) | Comprehensive collection of React, React Native, JS & TS snippets |
 | **Teleportation** | [`smoka7/hop.nvim`](https://github.com/smoka7/hop.nvim) | Neovim 0.10+ fast motion teleportation plugin |
-| **Fuzzy Picker** | [`folke/snacks.nvim`](https://github.com/folke/snacks.nvim) | Modern, lightweight file & live grep picker |
+| **Fuzzy Picker** | [`folke/snacks.nvim`](https://github.com/folke/snacks.nvim) | Modern, lightweight file & live grep picker + AllBlue Dashboard |
 | **File Explorer** | [`nvim-neo-tree/neo-tree.nvim`](https://github.com/nvim-neo-tree/neo-tree.nvim) | Floating file explorer tree |
-| **Buffer Explorer** | [`stevearc/oil.nvim`](https://github.com/stevearc/oil.nvim) | Edit file directory system like a normal vim buffer |
+| **Buffer Explorer** | [`stevearc/oil.nvim`](https://github.com/stevearc/oil.nvim) | Edit file directory system like a normal vim buffer in a floating window |
 | **Formatting** | [`stevearc/conform.nvim`](https://github.com/stevearc/conform.nvim) | Asynchronous auto-formatter (Prettier & Stylua) |
 | **Package Manager** | [`williamboman/mason.nvim`](https://github.com/williamboman/mason.nvim) | Automatic installer for LSP servers & formatters |
 | **LSP Bridge** | [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig) | Native Neovim LSP configuration |
 | **Syntax Parser** | [`nvim-treesitter/nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) | Universal incremental code parser & highlighter |
 | **Auto-Pairs** | [`windwp/nvim-autopairs`](https://github.com/windwp/nvim-autopairs) & [`autotag`](https://github.com/windwp/nvim-ts-autotag) | Automatic closing of parens, quotes, brackets & HTML/JSX tags |
 | **Color Highlights** | [`NvChad/nvim-colorizer.lua`](https://github.com/NvChad/nvim-colorizer.lua) | Real-time HEX, RGB & Tailwind CSS color previews |
+| **Rainbow Delimiters** | [`HiPhish/rainbow-delimiters.nvim`](https://github.com/HiPhish/rainbow-delimiters.nvim) | Colorful parentheses, brackets, and JSX/TSX tag highlighting |
 | **Theme** | [`craftzdog/solarized-osaka.nvim`](https://github.com/craftzdog/solarized-osaka.nvim) | Modern, vivid dark colorscheme inspired by TokyoNight & Solarized |
 
 ---

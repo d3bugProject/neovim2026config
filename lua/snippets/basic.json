@@ -1,0 +1,86 @@
+{
+  "header_comment": {
+    "prefix": "header",
+    "body": [
+      "/**",
+      " * @file ${TM_FILENAME}",
+      " * @author ${1}",
+      " * @date ${CURRENT_DATE}/${CURRENT_MONTH}/${CURRENT_YEAR} : ${CURRENT_HOUR}",
+      " * @description ${2}",
+      " */"
+    ]
+  },
+  "to do": {
+    "prefix": "todo",
+    "body": ["/**", "* TODO: $1", "* pomodoro : ", "*/"],
+    "description": "to do a mettre au debut dun fichier"
+  },
+  "arrow variable with const": {
+    "prefix": "consarr",
+    "body": ["const ${1} = ()=>{", "  ${2}", "}"],
+    "description": "arrow variable"
+  },
+  "arrow variable": {
+    "prefix": "a",
+    "body": ["(${3})=>{", "  ${1} ${0} ", "}"],
+    "description": "arrow variable"
+  },
+  "function": {
+    "prefix": "func",
+    "body": ["function $1 (){  ", "  return $2", "}"],
+    "description": "function"
+  },
+  "export function or component": {
+    "prefix": "exf",
+    "body": [
+      "export default function ${TM_FILENAME_PASCAL}(){",
+      "  return $2",
+      "}"
+    ],
+    "description": "export function or component"
+  },
+  "classname": {
+    "prefix": "cn",
+    "body": ["className={` $1 `}"],
+    "description": "classname"
+  },
+  "console log": {
+    "prefix": "cl",
+    "body": ["console.log('${TM_FILENAME_BASE}', $1)"],
+    "description": "console"
+  },
+  "console.log json stringify": {
+    "prefix": "clj",
+    "body": ["console.log('${TM_FILENAME}', JSON.stringify($1, null, 2))"],
+    "description": "json stingify for great volume object that is not good displayed"
+  },
+  "map": {
+    "prefix": "map",
+    "body": ["$3.map((item, $1)=>{", "    return $2", "})", "$0"],
+    "description": "mapping array"
+  },
+  "map": {
+    "prefix": "mapr",
+    "body": ["{", "  $3.map((item, $1)=>{", "    return $2", "  })", "}", "$0"],
+    "description": "mapping array in react"
+  },
+  "try catch": {
+    "prefix": "try",
+    "body": [
+      "try {",
+      "   $1  ",
+      "} catch (error) {",
+      "  console.log('${TM_FILENAME}', error)",
+      " throw error",
+      "}finally{",
+      " $0",
+      "}",
+      ""
+    ],
+    "description": "try catch simple"
+  },
+  "import": {
+    "prefix": "imp",
+    "body": ["import $1 from \"$2\""]
+  }
+}

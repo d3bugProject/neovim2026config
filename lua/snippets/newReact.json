@@ -1,0 +1,19 @@
+{
+  "component": {
+    "prefix": "com",
+    "body": [
+      "/*",
+      "********** $1",
+      "*/",
+      "",
+      "import React from \"react\"",
+      "",
+      "export default function ${TM_FILENAME_PASCAL}($2){",
+      "",
+      "return <div> $3 </div>",
+      "",
+      "} ",
+      ""
+    ]
+  }
+}

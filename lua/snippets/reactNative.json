@@ -1,0 +1,37 @@
+{
+  "Text ": {
+    "prefix": "txt",
+    "body": ["<Text> ${1} </Text>"],
+    "description": "Text ",
+    "import": "import {Text} from 'react-native'"
+  },
+  "View ": {
+    "prefix": "vie",
+    "body": ["<View> ${1} </View>"],
+    "description": "View",
+    "import": "import {View} from 'react-native'"
+  },
+  "view & text ": {
+    "prefix": "vt",
+    "body": ["<View><Text> ${1} </Text></View>"],
+    "description": "View and Text ",
+    "import": "import {View, Text} from 'react-native'"
+  },
+  "router with import ": {
+    "prefix": "router",
+    "body": ["const router = useRouter()"],
+    "description": "router with import ",
+    "import": "import {useRouter} from 'expo-router'"
+  },
+  "export function or component": {
+    "prefix": "rnc",
+    "body": [
+      "import {View, Text} from \"react-native\"",
+      "",
+      "export default function ${TM_FILENAME_PASCAL}(){",
+      "  return <View><Text>${TM_FILENAME_PASCAL}${0}</Text></View>",
+      "}"
+    ],
+    "description": "export function or component"
+  }
+}

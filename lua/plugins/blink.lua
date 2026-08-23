@@ -496,6 +496,11 @@ return {
     sources = {
       -- Uniquement le LSP, les chemins de fichiers et les snippets
       default = { "lsp", "path", "snippets" },
+      providers = {
+        snippets = {
+          score_offset = 100, -- Priorité absolue aux snippets pour éviter qu'ils ne soient masqués par le LSP
+        },
+      },
     },
   },
 }

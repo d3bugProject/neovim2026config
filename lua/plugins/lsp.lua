@@ -28,6 +28,28 @@ return {
       cmd = { "typescript-language-server", "--stdio" },
       filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
       capabilities = capabilities,
+      settings = {
+        javascript = {
+          suggest = {
+            autoImports = true,
+            completeFunctionCalls = true,
+          },
+          preferences = {
+            includeCompletionsForModuleExports = true,
+            includeCompletionsForImportStatements = true,
+          },
+        },
+        typescript = {
+          suggest = {
+            autoImports = true,
+            completeFunctionCalls = true,
+          },
+          preferences = {
+            includeCompletionsForModuleExports = true,
+            includeCompletionsForImportStatements = true,
+          },
+        },
+      },
     })
 
     vim.lsp.config("html", { capabilities = capabilities })

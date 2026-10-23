@@ -55,5 +55,38 @@ if orig_get_range then
   end
 end
 
+-- Nettoyage automatique des {" "} et des espaces résiduels JSX avant formatage & sauvegarde
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.jsx", "*.tsx", "*.js", "*.ts" },
+  callback = function()
+    local save_cursor = vim.fn.getpos(".")
+    local old_query = vim.fn.getreg("/")
+    -- Supprime les {" "} ou {' '} ou {` `}
+    vim.cmd([[%s/{\s*[`'"]\s*[`'"]\s*}//ge]])
+    -- Supprime les espaces résiduels en bout de ligne
+    vim.cmd([[%s/\s\+$//e]])
+    vim.fn.setreg("/", old_query)
+    vim.fn.setpos(".", save_cursor)
+  end,
+})
 
+-- Survol souris et affichage d'erreur en bas à droite
+local explainer = require("config.error_explainer")
+explainer.setup()
 
+-- Survol souris avec <MouseMove>
+vim.opt.mousemoveevent = true
+vim.keymap.set({ "n", "i", "v" }, "<MouseMove>", function()
+  local mouse = vim.fn.getmousepos()
+  if mouse.winid > 0 and mouse.line > 0 then
+    local bufnr = vim.api.nvim_win_get_buf(mouse.winid)
+    local lnum = mouse.line - 1
+    local col = mouse.column - 1
+    local diags = vim.diagnostic.get(bufnr, { lnum = lnum })
+    if #diags > 0 then
+      explainer.show_at(bufnr, lnum, col)
+    else
+      explainer.close()
+    end
+  end
+end, { desc = "Afficher explication d'erreur au survol de la souris" })

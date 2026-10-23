@@ -14,6 +14,7 @@ map("n", "<C-l>", "<C-w>l", { desc = "Fenêtre droite" })
 -- Sauvegarde rapide
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Sauvegarder le fichier" })
 map("n", "e", "<cmd>wa<CR>", { desc = "Sauvegarder tous les buffers (:wa)" })
+-- Note : la touche 'f' (nettoyage des {" "} et formatage Prettier/Stylua) est gérée dans lua/plugins/conform.lua
 
 -- Tout sélectionner avec Ctrl + a
 map({ "n", "i", "v" }, "<C-a>", "<cmd>normal! ggVG<CR>", { desc = "Tout sélectionner" })
@@ -74,14 +75,32 @@ end, { desc = "Afficher les messages/erreurs dans une fenêtre flottante" })
 
 
 
--- Afficher l'erreur du curseur (Diagnostic LSP/Treesitter) avec Espace + d
+-- Afficher l'erreur du curseur avec explications & solutions en bas à droite (Espace + d)
 map("n", "<leader>d", function()
-  vim.diagnostic.open_float(nil, { border = "rounded" })
-end, { desc = "Afficher le diagnostic sous le curseur" })
+  local explainer = require("config.error_explainer")
+  local lnum = vim.fn.line(".") - 1
+  local col = vim.fn.col(".") - 1
+  explainer.show_at(0, lnum, col)
+end, { desc = "Afficher le diagnostic & solution en bas à droite" })
 
 -- Raccourci Shift + Q (Q) pour sauvegarder tout et quitter (:wqa)
 map("n", "Q", "<cmd>wqa<CR>", { desc = "Sauvegarder tout et quitter Neovim" })
 
--- Fermeture de buffers
-map("n", "x", "<cmd>bd<CR>",  { desc = "Fermer le buffer actuel" })
-map("n", "X", "<cmd>%bd<CR>", { desc = "Fermer tous les buffers" })
+-- Navigation entre les onglets (Tabs / Buffers)
+-- Alt + k ou Tab : aller à l'onglet suivant (droite)
+-- Alt + j ou Shift + Tab : aller à l'onglet précédent (gauche)
+map("n", "<M-k>", "<cmd>bnext<CR>", { desc = "Onglet / Tab suivant (droite)" })
+map("n", "<M-j>", "<cmd>bprevious<CR>", { desc = "Onglet / Tab précédent (gauche)" })
+map("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Onglet / Tab suivant (droite)" })
+map("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "Onglet / Tab précédent (gauche)" })
+
+-- Fermeture de buffers / onglets
+map("n", "x", "<cmd>bdelete<CR>", { desc = "Fermer l'onglet / buffer actuel" })
+map("n", "X", function()
+  local current = vim.api.nvim_get_current_buf()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf) and buf ~= current and vim.bo[buf].buflisted then
+      vim.api.nvim_buf_delete(buf, { force = false })
+    end
+  end
+end, { desc = "Fermer tous les autres onglets" })

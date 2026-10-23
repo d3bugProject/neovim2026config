@@ -2,18 +2,21 @@
 
 # ⚡ Neovim 2026 Config
 
-### *The Blazing-Fast, AI-Powered & Zero-Friction Development Environment for React, React Native, TypeScript & Beyond.*
+### *The Blazing-Fast, AI-Powered & Zero-Friction Development Environment for Modern Web & Mobile Engineers.*
 
-[![Neovim](https://img.shields.io/badge/Neovim-0.12+-57A143?style=for-the-badge&logo=neovim&logoColor=white)](https://neovim.io)
+[![Neovim](https://img.shields.io/badge/Neovim-0.11%20%2F%200.12+-57A143?style=for-the-badge&logo=neovim&logoColor=white)](https://neovim.io)
 [![Lua](https://img.shields.io/badge/Lua-5.1_/_LuaJIT-2C5BB4?style=for-the-badge&logo=lua&logoColor=white)](https://www.lua.org)
 [![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-Enabled-6F42C1?style=for-the-badge&logo=githubcopilot&logoColor=white)](https://github.com/features/copilot)
 [![Blink.cmp Engine](https://img.shields.io/badge/Blink.cmp-Rust_Engine-DEA584?style=for-the-badge&logo=rust&logoColor=white)](https://github.com/saghen/blink.cmp)
-[![License](https://img.shields.io/badge/License-MIT-blue.style=for-the-badge)](LICENSE)
+[![Bufferline Tabs](https://img.shields.io/badge/Bufferline-Modern_Tabs-00ADD8?style=for-the-badge&logo=neovim&logoColor=white)](https://github.com/akinsho/bufferline.nvim)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
 <p align="center">
+  <a href="#-why-neovim-2026-config">Why This Config</a> •
   <a href="#-key-features">Key Features</a> •
   <a href="#-keybindings-cheat-sheet">Keybindings</a> •
-  <a href="#-plugin-ecosystem">Plugin Ecosystem</a> •
+  <a href="#-project-architecture">Architecture</a> •
+  <a href="#-plugin-ecosystem">Plugins</a> •
   <a href="#-quick-start--installation">Installation</a>
 </p>
 
@@ -23,162 +26,234 @@
 
 ## 🌟 Why Neovim 2026 Config?
 
-Crafted from the ground up to deliver an **unmatched developer experience (DX)**, this Neovim configuration combines cutting-edge **Rust-powered autocompletion**, **seamless GitHub Copilot AI ghost-text**, **instant cursor teleportation**, and **clean zero-friction formatting** — all while maintaining **sub-10ms startup times** and zero runtime errors.
+Crafted from the ground up to deliver an **unrivaled developer experience (DX)**, this configuration combines cutting-edge **Rust-powered autocompletion**, **seamless GitHub Copilot ghost-text**, **VS Code-style visual tabs**, an **AI/LSP error & solution explainer card**, **instant cursor teleportation**, and **automated JSX cleanup** — all while maintaining **sub-10ms startup times** and rock-solid stability.
 
-Whether you're crafting complex **React / Next.js** applications, building cross-platform **React Native** apps, or writing modern **TypeScript**, this config equips you with an IDE-grade environment in a ultra-lightweight terminal shell.
+Designed specifically for **React**, **Next.js**, **React Native**, **TypeScript**, and **Tailwind CSS**, it turns Neovim into a modern, full-fledged IDE in an ultra-lightweight terminal shell.
 
 ---
 
-## 🔥 Key Features & Advantages
+## 🔥 Key Features
 
-### 🤖 1. Seamless GitHub Copilot AI Integration
-- **Ghost-Text Completion**: As you type, Copilot suggests intelligent code in inline translucent text.
-- **One-Tap Acceptance**: Accept Copilot suggestions instantly with `<S-Tab>` (Shift + Tab).
-- **On-Demand AI Generation**: Force Copilot code generation anytime with `<Alt+c>`.
-- **Zero-Lag Architecture**: Copilot runs unobtrusively in the background without modal popups or picker freezes.
+### 🤖 1. Native GitHub Copilot Ghost-Text
+- **Inline translucent ghost-text** suggests code continuously as you type.
+- **One-Tap Acceptance**: Accept inline suggestions immediately with `<S-Tab>` (Shift + Tab).
+- **On-Demand Generation**: Trigger fresh Copilot suggestions manually with `<Alt+c>`.
+- **Zero Freeze**: Fully asynchronous Lua execution that never blocks the editor thread.
 
-### 🏎️ 2. Rust-Powered Autocompletion Engine (`blink.cmp`)
-- Powered by `blink.cmp`'s precompiled Rust fuzzy matching engine (`.dll` / `.so`).
-- Handles **23,000+ Tailwind CSS v4 classes** and full TypeScript AST trees with **0ms typing latency**.
-- Built-in snippet expansion and path completion.
+### 🏎️ 2. Rust-Powered Completion Engine (`blink.cmp`)
+- Built on `blink.cmp`'s compiled native Rust fuzzy matcher for **instant 0ms response times**.
+- **Smart Prioritization**: Project LSP definitions and auto-imports are ranked first, followed by snippets and filesystem paths.
+- Seamlessly handles **Tailwind CSS classes** and full TypeScript AST trees without lag.
 
-### ⚛️ 3. Next-Gen React & React Native Snippet Ecosystem
-- **Instant Components**: Generate functional components in milliseconds:
+### 📑 3. Modern Visual Tabs (`bufferline.nvim`)
+- Sleek top tab bar displaying open buffers with file icons and live LSP diagnostic status indicators (` `, ` `).
+- Effortless tab switching via `<Tab>` / `<S-Tab>` or `<Alt+k>` / `<Alt+j>`.
+- Instant buffer management: press `x` to close current tab, `X` to close all other tabs.
+
+### 💡 4. Contextual Diagnostic & Solution Explainer
+- **Interactive Popup**: Docked at the bottom-right of your editor, accessible via `<leader>d` or by **hovering with the mouse** (`<MouseMove>`).
+- **Human-Readable Explanations**: Understand *why* an error occurred (e.g., undeclared imports, React hooks ordering, missing JSX closing tags, type mismatches).
+- **Actionable Steps**: Provides concrete solutions tailored to modern JS/TS and React development.
+- Press `<Esc>` or `q` to dismiss instantly.
+
+### ⚛️ 5. Next-Gen React & React Native Snippet Ecosystem
+- **Instant Component Generation**:
   - `rfc` → React Functional Component
   - `rafce` → React Arrow Function Component with Export
   - `rnfe` → React Native Functional Export with `StyleSheet` & `View`/`Text`
   - `rnfs` → React Native Component with `StyleSheet`
 - **Smart Attributes & Hooks**:
-  - `cn` → Expands directly to `className={` ... `}`
+  - `cn` → Expands to `className={` ... `}`
   - `ufe` / `useEffect` → `useEffect(() => { ... }, []);`
   - `ust` / `useState` → `const [state, setState] = useState();`
-- **Fluid `<Tab>` Jumping**: Seamlessly jump through snippet placeholders (`$1` → `$2` → `$3`) with `<Tab>` and `<S-Tab>`.
+- **Placeholder Jumping**: Navigate snippet placeholders (`$1` → `$2` → `$3`) using `<Tab>` and `<S-Tab>`.
 
-### 🎯 4. Instant Cursor Teleportation (`hop.nvim`)
-- **`m` + Character**: Prompts for 1 character and displays hints for 1-tap jumping anywhere on screen.
-- **`mm` + Word**: Prompts for a word pattern and teleports the cursor directly to the match.
+### 🎯 6. Instant Cursor Teleportation (`hop.nvim`)
+- `m` + Character: Prompts for 1 character and displays hints to jump directly anywhere on the screen.
+- `mm` + Word: Prompts for a pattern and teleports the cursor to matching tokens across visible splits.
 
-### 🎨 5. Zero-Friction Formatting (Prettier & Stylua)
-- **Automatic Format-on-Save**: Formats your code effortlessly with Prettier on every `:w`.
-- **Clean JSX Output**: Prettier is pre-configured with `--html-whitespace-sensitivity ignore` and `--print-width 120` to prevent ugly `{" "}` text wraps in JSX/HTML.
+### 🎨 7. Zero-Friction Formatting & Automated JSX Cleanup
+- **One-Tap Clean & Format (`f` or `<leader>f`)**: Automatically strips ugly `{" "}` and residual whitespace generated by linters/formatters and runs Prettier / Stylua.
+- **Auto Format-on-Save**: Prettier and Stylua format your code cleanly on every `:w` without altering your search query register.
+- **Prettier Fine-Tuning**: Configured with `--html-whitespace-sensitivity ignore` and `--print-width 120` to prevent intrusive text wrapping.
 
-### 🔍 6. Ultra-Fast Fuzzy Picker (`snacks.nvim`)
-- `<Space><Space>` → Instantly search files across the project workspace.
-- `<Space>s` → Live grep text search across all codebase files with automatic `node_modules` and `.git` filtering.
+### 🔍 8. Blazing Fuzzy Search & Dashboard (`snacks.nvim`)
+- `<Space><Space>` → Search files instantly across your project workspace.
+- `<Space>s` → Live grep string search with automatic `node_modules`, `.git`, and build directory filtering.
+- **Custom "AllBlue" Dashboard** with quick-launch actions and custom palette styling.
 
-### 🛡️ 7. Rock-Solid & Zero-Error Stability
-- Built for **Neovim 0.12+** using native C/Lua Treesitter syntax highlighting.
-- Silenced internal deprecation notices and auto-cleaned buffer locks for a pristine experience.
+### 🌐 9. Network Fault Tolerance
+- Pre-configured `lazy.nvim` with custom connection timeouts and concurrency limits for unstable connections or restrictive proxies.
 
 ---
 
 ## ⌨️ Keybindings Cheat Sheet
 
-### 🚀 Navigation & Editing
+### 🚀 Navigation & Tabs
 | Shortcut | Mode | Description |
 |---|---|---|
+| `<Tab>` | `Normal` | Switch to **Next tab / buffer** (right) |
+| `<S-Tab>` | `Normal` | Switch to **Previous tab / buffer** (left) |
+| `<Alt+k>` (`<M-k>`) | `Normal` | Switch to next tab / buffer |
+| `<Alt+j>` (`<M-j>`) | `Normal` | Switch to previous tab / buffer |
+| `x` | `Normal` | **Close current buffer** / tab (`:bdelete`) |
+| `X` | `Normal` | **Close all other buffers** (keeps current buffer active) |
 | `<Ctrl-a>` | `Normal`, `Insert`, `Visual` | **Select All** lines in buffer |
 | `<C-s>` | `Normal`, `Insert`, `Visual`, `Select` | Save current file (`:w`) |
-| `e` | `Normal` | Save all open buffers (`:wa`) |
-| `x` | `Normal` | Close current buffer (`:bd`) |
-| `X` | `Normal` | Close all buffers (`:%bd`) |
-| `Q` | `Normal` | Save all & Quit Neovim (`:wqa`) |
+| `e` | `Normal` | Save all open files (`:wa`) |
+| `Q` | `Normal` | Save all and quit Neovim (`:wqa`) |
 | `<Esc>` | `Normal` | Clear search highlight (`:nohlsearch`) |
-| `<C-h>` / `<C-j>` / `<C-k>` / `<C-l>` | `Normal` | Move to left / down / up / right split window |
+| `<C-h>` / `<C-j>` / `<C-k>` / `<C-l>` | `Normal` | Navigate between window splits |
 
-### 🤖 GitHub Copilot AI & Autocompletion
+### 🤖 GitHub Copilot & Autocompletion
 | Shortcut | Mode | Description |
 |---|---|---|
-| `<S-Tab>` | `Insert` | **Accept Copilot Ghost-Text** (if visible) / Previous completion / Jump snippet step backward |
+| `<S-Tab>` | `Insert` | **Accept Copilot Ghost-Text** / Previous completion item / Previous snippet tabstop |
 | `<Alt+c>` (`<M-c>`) | `Insert` | **Force Copilot AI suggestion** on demand |
-| `<Alt+]>` (`<M-]>`) | `Insert` | Cycle to next Copilot suggestion |
-| `<Alt+[`> (`<M-[>`) | `Insert` | Cycle to previous Copilot suggestion |
-| `<Ctrl-]>` (`<C-]>`) | `Insert` | Dismiss current Copilot suggestion |
-| `<Tab>` | `Insert` | Select next completion item / Jump snippet step forward |
+| `<Alt+]>` (`<M-]>`) | `Insert` | Next Copilot suggestion |
+| `<Alt+[`> (`<M-[>`) | `Insert` | Previous Copilot suggestion |
+| `<Ctrl-]>` (`<C-]>`) | `Insert` | Dismiss Copilot suggestion |
+| `<Tab>` | `Insert` | Next completion item / Next snippet tabstop |
 | `<CR>` (Enter) | `Insert` | Accept completion suggestion / Expand snippet |
-| `<C-Space>` | `Insert` | Trigger autocompletion menu manually / Show-hide documentation |
+| `<C-Space>` | `Insert` | Open / toggle autocompletion menu manually |
 
 ### 🎯 Hop Teleportation
 | Shortcut | Mode | Description |
 |---|---|---|
-| `m` | `Normal`, `Visual`, `Operator` | Teleport to 1 target character on screen |
-| `mm` | `Normal`, `Visual`, `Operator` | Search & teleport to word pattern |
+| `m` | `Normal`, `Visual`, `Operator` | Jump to any single character on screen |
+| `mm` | `Normal`, `Visual`, `Operator` | Search and jump to any word pattern |
 
-### 🔍 Search & Explorers
+### 🔍 Search, Explorers & Diagnostics
 | Shortcut | Mode | Description |
 |---|---|---|
-| `<Space><Space>` | `Normal` | Search files in project workspace (Snacks picker) |
-| `<Space>s` | `Normal` | Live grep text search across project (Snacks picker) |
+| `<Space><Space>` | `Normal` | Search files in project (Snacks picker) |
+| `<Space>s` | `Normal` | Live grep project search (Snacks picker) |
 | `<Space>e` | `Normal` | Toggle Floating File Explorer (Neo-tree) |
 | `<Space>o` | `Normal` | Open floating directory editor (Oil.nvim) |
-| `<Space>f` | `Normal` | Format file manually (Prettier / Stylua via Conform) |
-| `<Space>d` | `Normal` | Show LSP diagnostic / error under cursor |
-| `<Space>n` | `Normal` | Open Neovim Notification & Error History window (`c` to clear, `q`/`<Esc>` to close) |
+| `f` / `<Space>f` | `Normal` | **Clean `{" "}` & format buffer** (Prettier / Stylua) |
+| `<Space>d` | `Normal` | Show floating **Diagnostic & Solution Explainer** |
+| *Mouse Hover* | All | Show Diagnostic & Solution card on cursor hover |
+| `<Space>n` | `Normal` | View Neovim notification & error history (`c` to clear, `q` to close) |
+
+---
+
+## 📂 Project Architecture
+
+```
+nvim/
+├── init.lua                    # Entry point (options -> keymaps -> lazy)
+├── lazy-lock.json              # Pinned plugin lockfile for reproducibility
+├── LICENSE                     # MIT Open Source License
+├── README.md                   # Documentation & guide
+└── lua/
+    ├── config/
+    │   ├── error_explainer.lua # Smart LSP diagnostic & solution popup
+    │   ├── keymaps.lua         # Global keybindings & tab controls
+    │   ├── lazy.lua            # Lazy.nvim bootstrapper & network resiliency
+    │   └── options.lua         # Core Neovim options & autocommands
+    ├── plugins/
+    │   ├── autopairs.lua       # Auto-closing parenthesis & brackets
+    │   ├── autotag.lua         # Auto-closing and renaming HTML/JSX tags
+    │   ├── blink.lua           # Rust-powered autocompletion configuration
+    │   ├── bufferline.lua      # Modern visual tabs bar with LSP status
+    │   ├── colorizer.lua       # Real-time hex, rgb & tailwind color previews
+    │   ├── conform.lua         # Prettier & Stylua formatting engine
+    │   ├── copilot.lua         # GitHub Copilot inline ghost-text integration
+    │   ├── hop.lua             # 2-character / word teleportation
+    │   ├── lsp.lua             # Native Neovim 0.11+ LSP client config
+    │   ├── mason.lua           # Automatic LSP & formatter package manager
+    │   ├── neoTree.lua         # Floating modern file explorer
+    │   ├── oil.lua             # Directory editing in a float buffer
+    │   ├── rainbow.lua         # Rainbow delimiters for brackets & JSX
+    │   ├── snacks.lua          # Fuzzy file/grep picker & AllBlue dashboard
+    │   ├── solarized-osaka.lua # Solarized Osaka transparent theme
+    │   └── treesitter.lua      # Incremental syntax highlighting
+    └── snippets/               # High-productivity JSON snippets (React, TS, HTML)
+```
 
 ---
 
 ## 🔌 Plugin Ecosystem
 
-| Category | Plugin | Description |
+| Category | Plugin | Purpose |
 |---|---|---|
-| **AI Completion** | [`zbirenbaum/copilot.lua`](https://github.com/zbirenbaum/copilot.lua) | Pure Lua GitHub Copilot integration with ghost-text |
-| **Completion Engine** | [`saghen/blink.cmp`](https://github.com/saghen/blink.cmp) | Ultra-fast Rust-powered autocompletion engine |
-| **Snippet Engine** | [`L3MON4D3/LuaSnip`](https://github.com/L3MON4D3/LuaSnip) | Powerful VSCode & custom snippet expansion engine |
-| **Snippet Packs** | [`friendly-snippets`](https://github.com/rafamadriz/friendly-snippets) & [`vscode-es7-react-snippets`](https://github.com/dsznajder/vscode-es7-javascript-react-snippets) | Comprehensive collection of React, React Native, JS & TS snippets |
-| **Teleportation** | [`smoka7/hop.nvim`](https://github.com/smoka7/hop.nvim) | Neovim 0.10+ fast motion teleportation plugin |
-| **Fuzzy Picker** | [`folke/snacks.nvim`](https://github.com/folke/snacks.nvim) | Modern, lightweight file & live grep picker + AllBlue Dashboard |
-| **File Explorer** | [`nvim-neo-tree/neo-tree.nvim`](https://github.com/nvim-neo-tree/neo-tree.nvim) | Floating file explorer tree |
-| **Buffer Explorer** | [`stevearc/oil.nvim`](https://github.com/stevearc/oil.nvim) | Edit file directory system like a normal vim buffer in a floating window |
-| **Formatting** | [`stevearc/conform.nvim`](https://github.com/stevearc/conform.nvim) | Asynchronous auto-formatter (Prettier & Stylua) |
-| **Package Manager** | [`williamboman/mason.nvim`](https://github.com/williamboman/mason.nvim) | Automatic installer for LSP servers & formatters |
-| **LSP Bridge** | [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig) | Native Neovim LSP configuration |
-| **Syntax Parser** | [`nvim-treesitter/nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) | Universal incremental code parser & highlighter |
-| **Auto-Pairs** | [`windwp/nvim-autopairs`](https://github.com/windwp/nvim-autopairs) & [`autotag`](https://github.com/windwp/nvim-ts-autotag) | Automatic closing of parens, quotes, brackets & HTML/JSX tags |
-| **Color Highlights** | [`NvChad/nvim-colorizer.lua`](https://github.com/NvChad/nvim-colorizer.lua) | Real-time HEX, RGB & Tailwind CSS color previews |
-| **Rainbow Delimiters** | [`HiPhish/rainbow-delimiters.nvim`](https://github.com/HiPhish/rainbow-delimiters.nvim) | Colorful parentheses, brackets, and JSX/TSX tag highlighting |
-| **Theme** | [`craftzdog/solarized-osaka.nvim`](https://github.com/craftzdog/solarized-osaka.nvim) | Modern, vivid dark colorscheme inspired by TokyoNight & Solarized |
+| **AI Assistant** | [`zbirenbaum/copilot.lua`](https://github.com/zbirenbaum/copilot.lua) | Inline ghost-text code completions |
+| **Completion** | [`saghen/blink.cmp`](https://github.com/saghen/blink.cmp) | Blazing-fast Rust fuzzy completion engine |
+| **Tabs / Buffers** | [`akinsho/bufferline.nvim`](https://github.com/akinsho/bufferline.nvim) | Sleek visual top tab bar |
+| **Snippets** | [`L3MON4D3/LuaSnip`](https://github.com/L3MON4D3/LuaSnip) | VSCode-compatible snippet engine |
+| **Snippet Packs** | [`friendly-snippets`](https://github.com/rafamadriz/friendly-snippets) | Comprehensive JS/TS, React and system snippets |
+| **Teleportation** | [`smoka7/hop.nvim`](https://github.com/smoka7/hop.nvim) | Lightning-fast cursor jumps |
+| **Fuzzy Picker** | [`folke/snacks.nvim`](https://github.com/folke/snacks.nvim) | High-speed file & text search + dashboard |
+| **File Tree** | [`nvim-neo-tree/neo-tree.nvim`](https://github.com/nvim-neo-tree/neo-tree.nvim) | Floating file explorer |
+| **Buffer File Manager** | [`stevearc/oil.nvim`](https://github.com/stevearc/oil.nvim) | Edit directory trees as text buffers |
+| **Formatting** | [`stevearc/conform.nvim`](https://github.com/stevearc/conform.nvim) | Async Prettier & Stylua formatter |
+| **Package Manager** | [`williamboman/mason.nvim`](https://github.com/williamboman/mason.nvim) | Portable LSP & formatter manager |
+| **LSP Configuration** | [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig) | Native Neovim LSP setup |
+| **Syntax Tree** | [`nvim-treesitter/nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) | Incremental syntax highlighting |
+| **Pairs & Tags** | [`windwp/nvim-autopairs`](https://github.com/windwp/nvim-autopairs) & [`autotag`](https://github.com/windwp/nvim-ts-autotag) | Auto pair & JSX tag closing |
+| **Color Preview** | [`NvChad/nvim-colorizer.lua`](https://github.com/NvChad/nvim-colorizer.lua) | Inline color badges |
+| **Rainbow Delimiters** | [`HiPhish/rainbow-delimiters.nvim`](https://github.com/HiPhish/rainbow-delimiters.nvim) | Balanced bracket and JSX tag coloring |
+| **Theme** | [`craftzdog/solarized-osaka.nvim`](https://github.com/craftzdog/solarized-osaka.nvim) | Clean dark transparent colorscheme |
 
 ---
 
 ## 🚀 Quick Start & Installation
 
 ### 1. Prerequisites
-Ensure you have **Neovim 0.12+** and **Git** installed on your system:
-- **Windows**: `winget install Neovim.Neovim`
-- **macOS**: `brew install neovim`
-- **Linux**: Install via your package manager or AppImage.
+- **Neovim** (v0.11.0 or newer recommended):
+  - **Windows**: `winget install Neovim.Neovim`
+  - **macOS**: `brew install neovim`
+  - **Linux**: Install via your distribution's package manager or download the official AppImage.
+- **Git**
+- A **Nerd Font** (e.g. *JetBrains Mono Nerd Font*) enabled in your terminal for icons.
 
-### 2. One-Line Installation
+### 2. Clone the Repository
 
-#### **Windows (PowerShell)**:
+#### Windows (PowerShell):
 ```powershell
 git clone https://github.com/d3bugProject/neovim2026config.git $env:LOCALAPPDATA\nvim
 ```
 
-#### **macOS / Linux (Bash/Zsh)**:
+#### macOS / Linux:
 ```bash
 git clone https://github.com/d3bugProject/neovim2026config.git ~/.config/nvim
 ```
 
-### 3. First Launch & Copilot Auth
-1. Open Neovim:
-   ```bash
-   nvim
-   ```
-   *Lazy.nvim will automatically download all plugins, LSP servers, and formatters in the background.*
+### 3. Launch Neovim
+```bash
+nvim
+```
+*`lazy.nvim` will automatically bootstrap and install all plugins, formatters (Prettier, Stylua), and LSP servers (TypeScript, Tailwind, HTML, CSS, Lua).*
 
-2. Authenticate GitHub Copilot (one-time setup):
-   ```vim
-   :Copilot auth
-   ```
-   *Follow the link and device code to link your GitHub Copilot account.*
+### 4. Authenticate GitHub Copilot
+To enable Copilot ghost-text, run this one-time command inside Neovim:
+```vim
+:Copilot auth
+```
+Follow the prompt in your browser to link your GitHub account.
 
 ---
 
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/d3bugProject/neovim2026config/issues).
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'feat: add AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more information.
+
 <div align="center">
 
-Crafted with ❤️ for high-productivity developers.
+Crafted with ❤️ by **[d3bugproject](https://github.com/d3bugProject)**.
 
-**[⭐ Star this repository](https://github.com/d3bugProject/neovim2026config)** if you find it helpful!
+**[⭐ Star this repository](https://github.com/d3bugProject/neovim2026config)** if you enjoy using it!
 
 </div>

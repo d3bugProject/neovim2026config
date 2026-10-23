@@ -494,11 +494,20 @@ return {
     },
 
     sources = {
-      -- Uniquement le LSP, les chemins de fichiers et les snippets
-      default = { "lsp", "path", "snippets" },
+      -- LSP en priorité absolue (fonctions, variables, imports), puis snippets et chemins
+      default = { "lsp", "snippets", "path" },
       providers = {
+        lsp = {
+          score_offset = 100, -- Priorité n°1 aux fonctions/variables/imports du projet
+          max_items = 8,      -- Évite la liste interminable (seulement les meilleurs résultats)
+        },
         snippets = {
-          score_offset = 100, -- Priorité absolue aux snippets pour éviter qu'ils ne soient masqués par le LSP
+          score_offset = 50,  -- Snippets utiles mais passent après les variables/fonctions
+          max_items = 4,
+        },
+        path = {
+          score_offset = 20,
+          max_items = 3,
         },
       },
     },
